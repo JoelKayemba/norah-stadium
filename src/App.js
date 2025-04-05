@@ -1,24 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import { ThemeProvider } from 'styled-components';
+import { GlobalStyle } from './styles/GlobalStyles';
+import theme from './styles/theme';
+import { Routes, Route } from 'react-router-dom';
+import ScrollToTop from './components/ScrollToTop';
+
+// pages
+import Home from './pages/Home';
+import APropos from './pages/APropos';
+import Activites from './pages/Activites';
+import Reservation from './pages/Reservation';
+import Tarifs from './pages/Tarifs';
+import Evenements from './pages/Evenements';
+import Contact from './pages/Contact';
+import NotFound from './pages/NotFound';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <ScrollToTop />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/a-propos" element={<APropos />} />
+        <Route path="/activites" element={<Activites />} />
+        <Route path="/reservation" element={<Reservation />} />
+        <Route path="/tarifs" element={<Tarifs />} />
+        <Route path="/evenements" element={<Evenements />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </ThemeProvider>
   );
 }
 
